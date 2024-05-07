@@ -24,7 +24,7 @@ variable "instance_type" {
 }
 
 variable "ami_name" {
-  default = "packer-ansible-example"
+  default = "MyGoldenImage-{{isotime | clean_resource_name}}" 
 }
 
 variable "vpc_id" {
