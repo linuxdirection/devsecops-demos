@@ -57,7 +57,7 @@ build {
   sources = ["source.amazon-ebs.example"]
 
   provisioner "ansible" {
-    playbook_file = "playbook.yml"
+    playbook_file = "./playbook.yml"
     extra_arguments = [
       "--ssh-extra-args", "-o HostKeyAlgorithms=+ssh-rsa -o PubkeyAcceptedKeyTypes=+ssh-rsa"
     ]
