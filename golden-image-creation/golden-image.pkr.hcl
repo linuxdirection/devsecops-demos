@@ -70,8 +70,12 @@ build {
 
   provisioner "shell" {
     inline = [
-      "sudo apt-get update",
-      "sudo apt-get install -y inspec",
+      "curl https://omnitruck.chef.io/install.sh | sudo bash -s -- -P inspec"
+    ]
+  }
+
+  provisioner "shell" {
+    inline = [
       "inspec exec /tmp/inspec_profile"
     ]
   }
