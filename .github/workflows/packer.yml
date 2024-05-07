@@ -1,10 +1,10 @@
-name: Build Golden Image
+name: Build Golden Image Using Packer and Ansible
 
 on:
   push:
     paths:
       - golden-image-creation/**
-  workflow_dispatch:
+    workflow_dispatch:
 
 env:
   PRODUCT_VERSION: "1.10.3"
@@ -15,28 +15,23 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      
-      - name: Setup `packer`
+      - name: Setup Packer
         uses: hashicorp/setup-packer@main
         id: setup
         with:
           version: ${{ env.PRODUCT_VERSION }}
-      
       - name: Set up AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: eu-west-1
-      
       - name: Initialize Packer
         working-directory: golden-image-creation
         run: packer init golden-image.pkr.hcl
-      
       - name: Validate Packer template
         working-directory: golden-image-creation
         run: packer validate golden-image.pkr.hcl
-      
       - name: Build Golden Image
         working-directory: golden-image-creation
         run: packer build golden-image.pkr.hcl
