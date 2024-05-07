@@ -68,7 +68,7 @@ build {
     destination = "/tmp/inspec_profile"
   }
 
-  provisioner "remote-exec" {
+  provisioner "shell" {
     inline = [
       "sudo apt-get update",
       "sudo apt-get install -y inspec",
