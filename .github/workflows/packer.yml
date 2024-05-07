@@ -8,6 +8,7 @@ on:
 
 env:
   PRODUCT_VERSION: "1.10.3"
+  CHEF_LICENSE: accept-silent
 
 jobs:
   build:

@@ -76,7 +76,6 @@ build {
 
   provisioner "shell" {
     inline = [
-      "export CHEF_LICENSE=accept",
       "inspec exec /tmp/inspec_profile"
     ]
   }
