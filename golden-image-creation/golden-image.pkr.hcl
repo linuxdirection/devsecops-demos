@@ -24,7 +24,7 @@ variable "instance_type" {
 }
 
 variable "ami_name" {
-  default = "MyGoldenImage-{{isotime | clean_resource_name}}" 
+  default = "packer-testing-{{timestamp}}"
 }
 
 variable "vpc_id" {
