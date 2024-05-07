@@ -62,4 +62,17 @@ build {
       "--ssh-extra-args", "-o HostKeyAlgorithms=+ssh-rsa -o PubkeyAcceptedKeyTypes=+ssh-rsa"
     ]
   }
+
+  provisioner "file" {
+    source      = "inspec_profile"
+    destination = "/tmp/inspec_profile"
+  }
+
+  provisioner "remote-exec" {
+    inline = [
+      "sudo apt-get update",
+      "sudo apt-get install -y inspec",
+      "inspec exec /tmp/inspec_profile"
+    ]
+  }
 }
