@@ -24,7 +24,7 @@ variable "instance_type" {
 }
 
 variable "ami_name" {
-  default = "packer-ansible-example"
+  default = "packer-testing-{{timestamp}}"
 }
 
 variable "vpc_id" {
