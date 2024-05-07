@@ -1,11 +1,11 @@
 packer {
   required_plugins {
     amazon = {
-      source  = "github.com/hashicorp/amazon"
+      source = "github.com/hashicorp/amazon"
       version = "~> 1.1.1"
     }
     ansible = {
-      source  = "github.com/hashicorp/ansible"
+      source = "github.com/hashicorp/ansible"
       version = "~> 1.0.0"
     }
   }
@@ -36,13 +36,13 @@ variable "subnet_id" {
 }
 
 source "amazon-ebs" "example" {
-  region                      = var.aws_region
-  source_ami                  = var.source_ami
-  instance_type               = var.instance_type
-  ssh_username                = "ubuntu"
-  vpc_id                      = var.vpc_id
-  subnet_id                   = var.subnet_id
-  ami_name                    = var.ami_name
+  region           = var.aws_region
+  source_ami       = var.source_ami
+  instance_type    = var.instance_type
+  ssh_username     = "ubuntu"
+  vpc_id           = var.vpc_id
+  subnet_id        = var.subnet_id
+  ami_name         = var.ami_name
   associate_public_ip_address = true
   run_tags = {
     Name = "packer-example"
@@ -70,12 +70,9 @@ build {
 
   provisioner "shell" {
     inline = [
-      "sudo apt-get update",
-      "sudo apt-get install -y ruby ruby-dev",
-      "sudo gem install inspec -v 5.0.0"
+      "curl https://omnitruck.chef.io/install.sh | sudo bash -s -- -P inspec -v 5"
     ]
   }
-
 
   provisioner "shell" {
     inline = [
